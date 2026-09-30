@@ -551,7 +551,8 @@ export default function FadzaAIChatbot({
                 backgroundColor: '#FFFFFF',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                padding: '3px'
               }}
             >
               <img
@@ -633,6 +634,7 @@ export default function FadzaAIChatbot({
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  padding: '3px',
                   flexShrink: 0
                 }}
               >

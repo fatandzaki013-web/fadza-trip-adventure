@@ -108,6 +108,7 @@ export default function Footer({ onNavigate, onSelectDestination, onSelectPackag
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  padding: '3px',
                   flexShrink: 0
                 }}
               >

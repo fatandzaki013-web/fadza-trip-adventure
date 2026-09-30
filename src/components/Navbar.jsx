@@ -130,6 +130,7 @@ export default function Navbar({ activePage, setActivePage, onOpenAiChat, onOpen
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  padding: '3px',
                   flexShrink: 0
                 }}
               >
@@ -492,6 +493,7 @@ export default function Navbar({ activePage, setActivePage, onOpenAiChat, onOpen
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  padding: '3px',
                   flexShrink: 0
                 }}
               >

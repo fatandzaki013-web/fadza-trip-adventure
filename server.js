@@ -58,6 +58,13 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Normalize path if /fadza-trip-adventure prefix is present
+  if (reqPath.startsWith('/fadza-trip-adventure/')) {
+    reqPath = reqPath.slice('/fadza-trip-adventure'.length);
+  } else if (reqPath === '/fadza-trip-adventure') {
+    reqPath = '/';
+  }
+
   if (reqPath === '/') reqPath = '/index.html';
 
   let filePath = path.join(DIST_DIR, reqPath);
@@ -74,6 +81,13 @@ const server = http.createServer((req, res) => {
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
+      // Don't fallback to HTML for asset files (js, css, images) - return 404
+      const fileExt = path.extname(reqPath).toLowerCase();
+      if (['.js', '.css', '.png', '.jpg', '.jpeg', '.webp', '.svg', '.json', '.mp4'].includes(fileExt)) {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Asset Not Found');
+        return;
+      }
       // SPA Fallback: serve index.html
       filePath = path.join(DIST_DIR, 'index.html');
     }
