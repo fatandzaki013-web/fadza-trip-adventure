@@ -1,0 +1,319 @@
+cat << 'EOF' > update_travel_data.py
+import re
+
+with open('src/data/travelData.js', 'r') as f:
+    content = f.read()
+
+# 1. New Destinations to insert into DESTINATIONS before the closing '];\n\nexport const PACKAGES'
+new_destinations = """  {
+    id: "dieng",
+    name: "Dieng Plateau",
+    region: "Jawa",
+    province: "Jawa Tengah",
+    subtitle: "Negeri di Atas Awan & Kawah Vulkanik Magis",
+    shortDescription: "Telaga Warna dua warna, Golden Sunrise Sikunir, kawah mendidih Sikidang, dan candi Hindu tertua di Jawa.",
+    description: "Dataran tinggi vulkanik berkabut sejuk di ketinggian 2.093 mdpl dengan panorama fenomena alam langka, danau belerang warna-warni, serta kearifan agraris dataran tinggi yang asri.",
+    fullDescription: "Dieng Plateau adalah dataran tinggi mistis di Wonosobo dan Banjarnegara yang terkenal dengan julukan 'Negeri di Atas Awan'. Dari titik pandang Bukit Sikunir saat fajar menyingsing, Anda akan disuguhi lautan awan emas berlatar siluet Gunung Sindoro yang dramatis, uap kawah Sikidang, dan keunikan Telaga Warna.",
+    image: ASSET_IMAGES.destinations.dieng.primary,
+    fallbackImage: ASSET_IMAGES.destinations.dieng.fallback,
+    packageCount: 1,
+    startingPrice: 1950000,
+    tags: ["Pegunungan", "Budaya", "Healing", "Adventure"],
+    travelStyles: ["Healing", "Adventure", "Culture"],
+    travelStyle: ["Healing", "Adventure", "Culture"],
+    bestTime: "Juni - September (Kemarau & Peluang Fenomena Embun Upas Salju Dieng)",
+    durationRecommendation: "3 Hari 2 Malam",
+    recommendedDuration: "3 Hari 2 Malam",
+    estimatedBudget: "Rp 1.800.000 - Rp 3.500.000 / orang",
+    comfortLevel: "Sejuk & Dingin (10°C - 18°C, Butuh Jaket Tebal)",
+    highlights: [
+      "Golden Sunrise Bukit Sikunir dengan lautan awan berlatar Gunung Sindoro",
+      "Telaga Warna dan Telaga Pengilon yang berubah warna saat terpapar sinar matahari",
+      "Eksplorasi uap belerang Kawah Sikidang dengan latar batuan vulkanik",
+      "Kompleks Candi Arjuna, mahakarya arsitektur Hindu abad ke-7",
+      "Mencicipi Mie Ongklok hangat dan buah carica manis khas Dieng"
+    ],
+    attractions: [
+      "Bukit Sikunir (Golden Sunrise)",
+      "Telaga Warna & Telaga Pengilon",
+      "Kawah Sikidang",
+      "Kompleks Candi Arjuna",
+      "Batu Pandang Ratapan Angin"
+    ],
+    recommendedPlaces: [
+      "Bukit Sikunir (Spot Sunrise Terbaik Asia Tenggara)",
+      "Batu Pandang Ratapan Angin (View Telaga Warna dari Ketinggian)",
+      "Kawah Sikidang (Kawah Vulkanik Aktif Ramah Wisatawan)",
+      "Kompleks Candi Arjuna (Warisan Budaya Abad ke-7)",
+      "Kawah Candradimuka & Sumur Jalatunda"
+    ],
+    thingsToDo: [
+      "Trekking fajar menyongsong lautan awan emas Bukit Sikunir",
+      "Hunting foto estetik di jembatan kayu Telaga Pengilon",
+      "Menyantap tempe kemul gurih dan mie ongklok berkuah kental khas Wonosobo",
+      "Menikmati udara sejuk dingin pegunungan sambil ngopi Arabika Dieng"
+    ],
+    weatherDetails: "Suhu rata-rata siang 16°C–20°C, malam hingga dini hari 5°C–12°C. Pada musim kemarau Juli-Agustus suhu dapat menyentuh 0°C (embun beku upas).",
+    localCuisine: [
+      { name: "Mie Ongklok", desc: "Mie kuning kuah kental gurih ebi manis disajikan dengan sate sapi bumbu kacang lembut." },
+      { name: "Carica Dieng", desc: "Buah pepaya gunung manis segar khas Dieng dalam sirup dingin yang kaya vitamin." },
+      { name: "Tempe Kemul", desc: "Gorengan tempe berbalur adonan kunyit dan kucai renyah hangat, pas di udara dingin." }
+    ],
+    culturalEtiquette: [
+      "Gunakan jaket tebal, sarung tangan, dan kupluk hangat saat trekking dini hari.",
+      "Jaga kebersihan area sakral Candi Arjuna dan tidak membuang sampah sembarangan.",
+      "Patuhi jalur trekking aman di sekitar kawah aktif Sikidang."
+    ],
+    transportationGuide: "Penerbangan atau kereta ke Semarang / Yogyakarta, dilanjutkan perjalanan darat nyaman 3,5 - 4 jam melintasi perkebunan teh Wonosobo.",
+    gallery: [
+      ASSET_IMAGES.destinations.dieng.primary,
+      ASSET_IMAGES.destinations.dieng.fallback,
+      ASSET_IMAGES.packages.diengExplorer.gallery[0],
+      ASSET_IMAGES.packages.diengExplorer.gallery[1]
+    ],
+    relatedPackages: ["dieng-explorer"],
+    faq: [
+      {
+        question: "Apakah trekking ke Bukit Sikunir berat untuk anak-anak?",
+        answer: "Jalur tangga semen ramah keluarga hanya 20-30 menit jalan santai dengan pegangan aman dan rest area."
+      }
+    ]
+  },
+  {
+    id: "toraja",
+    name: "Tana Toraja",
+    region: "Sulawesi",
+    province: "Sulawesi Selatan",
+    subtitle: "Kearifan Luhur Rumah Tongkonan & Kubur Tebing Batu",
+    shortDescription: "Perkampungan megalitikum Kete Kesu, pemakaman tebing batu Londa, dan pesona pemandangan bukit Batutumonga.",
+    description: "Destinasi warisan budaya antropologi dunia di dataran tinggi Sulawesi Selatan, menyimpan filosofi mendalam penghormatan leluhur, ornamen ukiran Tongkonan, dan bentang alam bukit pinus yang magis.",
+    fullDescription: "Tana Toraja adalah jendela kebudayaan leluhur nusantara yang paling memesona di dunia. Dengan atap rumah Tongkonan yang melengkung bagai perahu, tradisi pemakaman tebing batu Londa, hingga bukit Batutumonga yang menghadap hamparan sawah dan awan pagi.",
+    image: ASSET_IMAGES.destinations.toraja.primary,
+    fallbackImage: ASSET_IMAGES.destinations.toraja.fallback,
+    packageCount: 1,
+    startingPrice: 3200000,
+    tags: ["Budaya", "Heritage", "Pegunungan", "Eksplorasi"],
+    travelStyles: ["Culture", "Adventure", "Healing"],
+    travelStyle: ["Culture", "Adventure", "Healing"],
+    bestTime: "Juni - Oktober (Musim festival budaya Rambu Solo & cuaca sejuk cerah)",
+    durationRecommendation: "4 Hari 3 Malam",
+    recommendedDuration: "4 Hari 3 Malam",
+    estimatedBudget: "Rp 3.000.000 - Rp 5.500.000 / orang",
+    comfortLevel: "Sejuk & Syahdu (18°C - 24°C)",
+    highlights: [
+      "Mengagumi deretan Tongkonan berusia ratusan tahun di Kampung Adat Kete Kesu",
+      "Misteri makam tebing batu gantung Londa dan patung kayu Tau-Tau",
+      "Pemandangan 'Negeri di Atas Awan' spektakuler di Batutumonga & Lolai",
+      "Menikmati secangkir Kopi Arabika Toraja asli di kebun dataran tinggi",
+      "Pusat kerajinan tenun ikat tradisional Sa'dan To'barana"
+    ],
+    attractions: [
+      "Kampung Adat Kete Kesu",
+      "Goa Pemakaman Tebing Londa",
+      "Batutumonga & Lolai",
+      "Bori Kalimbuang (Situs Megalitikum)",
+      "Desa Tenun Sa'dan"
+    ],
+    recommendedPlaces: [
+      "Kete Kesu (Museum Terbuka Arsitektur Tongkonan Tertua)",
+      "Londa (Goa Alami Makam Leluhur & Patung Tau-Tau)",
+      "Batutumonga (Panorama Lembah Sawah Bertingkat & Kabut)",
+      "Bori Kalimbuang (Batu Menhir Purbakala Upacara Rambu Solo)",
+      "Lolai (Spot Sunrise di Atas Gumpalan Awan Putih)"
+    ],
+    thingsToDo: [
+      "Menjelajahi arsitektur kayu tanpa paku rumah Tongkonan dan lumbung Alang",
+      "Menyusuri goa karst Londa dengan pemandu lentera tradisional",
+      "Menyeruput kopi Arabika Toraja spesialti beraroma rempah di puncak bukit",
+      "Belajar filosofi tenun motif kerbau toraja langsung dari pengrajin lokal"
+    ],
+    weatherDetails: "Suhu udara sejuk pegunungan rata-rata 18°C–25°C dengan angin lembah yang segar dan pemandangan hijau sepanjang tahun.",
+    localCuisine: [
+      { name: "Pa'piong", desc: "Daging bumbu rempah daun mayana dimasak dalam bambu dibakar arang aromatik." },
+      { name: "Kopi Arabika Toraja", desc: "Kopi legendaris dunia dengan cita rasa fruity seimbang, acidity halus, dan aroma earthy floral." },
+      { name: "Deppa Tori", desc: "Camilan renyah manis dari tepung beras dan gula merah bertabur biji wijen wangi." }
+    ],
+    culturalEtiquette: [
+      "Patuhi tata tertib pemandu saat memasuki goa makam sakral Londa.",
+      "Gunakan pakaian sopan dan bersikap santun saat berada di kampung adat.",
+      "Tanyakan izin terlebih dahulu sebelum memotret upacara adat Rambu Solo."
+    ],
+    transportationGuide: "Terbang ke Bandara Sultan Hasanuddin Makassar (UPG), dilanjutkan penerbangan perintis ke Bua Palopo atau jalur darat scenic Toraja 7 jam.",
+    gallery: [
+      ASSET_IMAGES.destinations.toraja.primary,
+      ASSET_IMAGES.destinations.toraja.fallback,
+      ASSET_IMAGES.packages.torajaHeritage.gallery[0],
+      ASSET_IMAGES.packages.torajaHeritage.gallery[1]
+    ],
+    relatedPackages: ["toraja-heritage"],
+    faq: [
+      {
+        question: "Apakah aman mengunjungi makam goa tebing Londa?",
+        answer: "Sangat aman. Setiap tamu didampingi pemandu lokal berlisensi yang membawa lampu petromak tradisional untuk penerangan jalan."
+      }
+    ]
+  },
+  {
+    id: "wakatobi",
+    name: "Wakatobi",
+    region: "Sulawesi",
+    province: "Sulawesi Tenggara",
+    subtitle: "Jantung Segitiga Terumbu Karang Dunia",
+    shortDescription: "Gugusan 4 pulau surga bawah laut: Wangi-Wangi, Kaledupa, Tomia, dan Binongko dengan visibilitas air 30 meter.",
+    description: "Taman Nasional Bahari Wakatobi adalah rumah bagi 750 dari 850 spesies karang dunia. Surga penyelam dan penikmat pantai tropis tak berpenghuni dengan air laut sebening akuarium.",
+    fullDescription: "Terletak di jantung Segitiga Terumbu Karang Dunia (Coral Triangle), Kepulauan Wakatobi menawarkan pesona bawah laut yang tiada tandingannya di muka bumi. Bertemu kawanan lumba-lumba liar saat fajar di Wangi-Wangi, snorkeling di pulau tak berpenghuni Hoga, dan keramahan suku pengembara laut Bajo Mola.",
+    image: ASSET_IMAGES.destinations.wakatobi.primary,
+    fallbackImage: ASSET_IMAGES.destinations.wakatobi.fallback,
+    packageCount: 1,
+    startingPrice: 4250000,
+    tags: ["Bahari", "Diving", "Snorkeling", "Pantai"],
+    travelStyles: ["Pantai", "Adventure", "Healing"],
+    travelStyle: ["Pantai", "Adventure", "Healing"],
+    bestTime: "Maret - Mei & September - November (Laut tenang tanpa ombak & visibilitas bawah air terbaik)",
+    durationRecommendation: "4 Hari 3 Malam",
+    recommendedDuration: "4 Hari 3 Malam",
+    estimatedBudget: "Rp 4.000.000 - Rp 7.500.000 / orang",
+    comfortLevel: "Petualangan Bahari Sangat Memuaskan",
+    highlights: [
+      "Snorkeling & diving di terumbu karang warna-warni kelas dunia Pulau Hoga",
+      "Menyapa puluhan lumba-lumba hidung botol berenang liar saat fajar di Selat Wangi-Wangi",
+      "Mengunjungi Kampung Terapung Bajo Mola dan melihat keahlian menyelam bebas suku laut",
+      "Sunset jingga magis dari Puncak Kahianga di Pulau Tomia",
+      "Berenang di air jernih Goa Kontamale yang terbentuk dari batuan karst purba"
+    ],
+    attractions: [
+      "Pulau Hoga Coral Gardens",
+      "Dolphin Watching Wangi-Wangi",
+      "Desa Adat Suku Bajo Mola",
+      "Puncak Tomia & Mari Mabuk Dive Site",
+      "Goa Karst Kontamale"
+    ],
+    recommendedPlaces: [
+      "Pulau Hoga (Surga Snorkeling Pantai Pasir Putih Bertekstur Tepung)",
+      "Perairan Mola (Dolphin Watching Liar di Laut Bebas)",
+      "Tomia Reef (Dinding Karang Terkaya di Asia Pasifik)",
+      "Kampung Bajo Mola (Komunitas Rumah Panggung Terapung Suku Laut)",
+      "Pantai Cemara & Sombu Dive (Sunset & Spot Relaksasi)"
+    ],
+    thingsToDo: [
+      "Snorkeling bersama ribuan ikan karang warna-warni tepat 5 meter dari bibir pantai",
+      "Berlayar mengejar kawanan lumba-lumba yang melompat lincah di samping perahu",
+      "Berbincang hangat dengan nelayan tradisional suku Bajo tentang kearifan menjaga laut",
+      "Mencicipi olahan ikan bakar segar tangkapan hari itu berlumur dabu-dabu lokal"
+    ],
+    weatherDetails: "Iklim tropis maritim dengan suhu 27°C–31°C, visibilitas air laut mencapai 25 hingga 35 meter yang sangat jernih.",
+    localCuisine: [
+      { name: "Kasuami", desc: "Makanan pokok khas Wakatobi dari singkong parut kukus berbentuk kerucut, gurih alami pengganti nasi." },
+      { name: "Ikan Parende", desc: "Sup ikan kuah asam segar kaya kunyit, daun kedondong, dan cabai rawit pedas nikmat." },
+      { name: "Gohu Ikan Segar", desc: "Ikan tuna segar dipotong dadu disiram perasan jeruk limau, minyak kelapa hangat, dan kenari sangrai." }
+    ],
+    culturalEtiquette: [
+      "Jangan menginjak atau mengambil pecahan terumbu karang hidup.",
+      "Gunakan sunscreen ramah terumbu karang (reef-safe sunscreen).",
+      "Hormati adat istiadat warga desa terapung Bajo saat berkunjung."
+    ],
+    transportationGuide: "Terbang ke Bandara Matahora Wangi-Wangi (WNI) via Makassar (UPG) atau Kendari (KDI), dilanjutkan speedboat antar-pulau berlisensi.",
+    gallery: [
+      ASSET_IMAGES.destinations.wakatobi.primary,
+      ASSET_IMAGES.destinations.wakatobi.fallback,
+      ASSET_IMAGES.packages.wakatobiExpedition.gallery[0],
+      ASSET_IMAGES.packages.wakatobiExpedition.gallery[1]
+    ],
+    relatedPackages: ["wakatobi-expedition"],
+    faq: [
+      {
+        question: "Apakah orang yang tidak bisa berenang bisa snorkeling di Wakatobi?",
+        answer: "Bisa sekali! Kami menyediakan life jacket berstandar internasional dan pemandu lokal yang mendampingi di air secara privat."
+      }
+    ]
+  },
+  {
+    id: "karimunjawa",
+    name: "Karimunjawa",
+    region: "Jawa",
+    province: "Jawa Tengah",
+    subtitle: "Kepulauan Tropis Tersembunyi Laut Jawa",
+    shortDescription: "27 gugusan pulau karang eksotis, penangkaran hiu jinak Menjangan Kecil, dan pantai pasir putih berair toska.",
+    description: "Surga bahari tropis di utara Pulau Jawa dengan pantai pasir putih halus, terumbu karang yang terjaga, serta atmosfer pulau nelayan yang santai dan ramah kantong.",
+    fullDescription: "Kepulauan Karimunjawa di Kabupaten Jepara adalah jawaban bagi Anda yang mendambakan pelarian tropis tanpa harus terbang jauh ke timur Indonesia. Jelajahi pulau tak berpenghuni, rasakan sensasi berenang bersama bayi hiu jinak di Menjangan Kecil, dan nikmati kelapa muda di Pantai Bobby berlatar ayunan pantai.",
+    image: ASSET_IMAGES.destinations.karimunjawa.primary,
+    fallbackImage: ASSET_IMAGES.destinations.karimunjawa.fallback,
+    packageCount: 1,
+    startingPrice: 1750000,
+    tags: ["Pantai", "Snorkeling", "Healing", "Keluarga"],
+    travelStyles: ["Pantai", "Healing", "Family", "Adventure"],
+    travelStyle: ["Pantai", "Healing", "Family", "Adventure"],
+    bestTime: "April - Oktober (Laut Jawa sangat tenang dan teduh)",
+    durationRecommendation: "3 Hari 2 Malam",
+    recommendedDuration: "3 Hari 2 Malam",
+    estimatedBudget: "Rp 1.500.000 - Rp 3.000.000 / orang",
+    comfortLevel: "Sangat Santai & Menyenangkan",
+    highlights: [
+      "Island hopping perahu wisata ke Pulau Cilik dan Pulau Menjangan Besar",
+      "Sensasi berenang dan foto bersama hiu karang jinak di kolam konservasi Menjangan",
+      "Snorkeling terumbu karang warna-warni dan anemon ikan badut Nemo di Spot Maer",
+      "Menyantap BBQ ikan bakar segar di pantai pasir putih pulau tak berpenghuni",
+      "Menyaksikan matahari terbenam spektakuler dari atas Bukit Love atau Pantai Tanjung Gelam"
+    ],
+    attractions: [
+      "Pulau Menjangan Kecil & Besar",
+      "Pantai Tanjung Gelam (Kelapa Miring)",
+      "Pantai Bobby & Ayunan Laut",
+      "Spot Snorkeling Nemo Maer",
+      "Bukit Love Karimunjawa"
+    ],
+    recommendedPlaces: [
+      "Pulau Menjangan Kecil (Spot Penangkaran Hiu & Pasir Putih)",
+      "Pantai Tanjung Gelam (Spot Sunset Terbaik dengan Nyiur Melengkung)",
+      "Pulau Cilik (Air Toska Sebening Kristal & Ikan Badut)",
+      "Pantai Bobby (Pantai Tenang Menghadap Samudra dengan Suasana Rindang)",
+      "Bukit Love (Spot Foto Gardu Pandang Huruf Raksasa Menghadap Gugusan Pulau)"
+    ],
+    thingsToDo: [
+      "Berenang snorkeling melihat ikan badut Nemo bersembunyi di anemon laut",
+      "Bakar ikan kakap segar di atas pasir pantai pulau terpencil untuk makan siang",
+      "Menyewa motor matic mengelilingi jalanan pulau yang lengang dan asri",
+      "Menikmati jagung bakar dan kopi hangat di Alun-Alun Karimunjawa saat malam hari"
+    ],
+    weatherDetails: "Suhu udara tropis 28°C–32°C dengan semilir angin laut yang menenangkan dan laut tenang sepanjang musim kemarau.",
+    localCuisine: [
+      { name: "Pindang Serani", desc: "Sup ikan laut segar kuah bening rasa gurih asam pedas rempah belimbing wuluh." },
+      { name: "Ikan Bakar Bumbu Karimun", desc: "Ikan kakap atau kerapu segar dibakar arang batok kelapa dengan olesan bumbu kecap pedas gurih." },
+      { name: "Bakso Ikan Ekor Kuning", desc: "Bakso kenyal lembut dari daging ikan laut asli tanpa bahan pengawet." }
+    ],
+    culturalEtiquette: [
+      "Jaga kelestarian terumbu karang dengan tidak menginjak karang saat snorkeling.",
+      "Selalu gunakan pelampung saat beraktivitas di laut terbuka.",
+      "Gunakan pakaian yang sopan saat berada di perkampungan warga lokal."
+    ],
+    transportationGuide: "Menyeberang dengan Kapal Cepat Express Bahari (2 jam) atau KMP Siginjai dari Pelabuhan Kartini Jepara, Jawa Tengah.",
+    gallery: [
+      ASSET_IMAGES.destinations.karimunjawa.primary,
+      ASSET_IMAGES.destinations.karimunjawa.fallback,
+      ASSET_IMAGES.packages.karimunjawaGetaway.gallery[0],
+      ASSET_IMAGES.packages.karimunjawaGetaway.gallery[1]
+    ],
+    relatedPackages: ["karimunjawa-getaway"],
+    faq: [
+      {
+        question: "Apakah aman berenang bersama hiu di Menjangan?",
+        answer: "Sangat aman. Jenis hiu karang sirip hitam (blacktip reef shark) ini sudah terbiasa dengan manusia dan selalu dipandu oleh pawang konservasi berpengalaman."
+      }
+    ]
+  },
+"""
+
+# Insert new destinations right before `];\n\nexport const PACKAGES = [`
+pattern_dest = r'(\s*\{\s*id:\s*"belitung"[\s\S]*?\}\s*)\n(\];\s*\n\s*export const PACKAGES)'
+match_dest = re.search(pattern_dest, content)
+if match_dest:
+    content = content[:match_dest.start(2)] + ",\n" + new_destinations + content[match_dest.start(2):]
+    print("SUCCESS: 4 New destinations inserted!")
+else:
+    print("ERROR: Could not find insert location for destinations")
+
+with open('src/data/travelData.js', 'w') as f:
+    f.write(content)
+EOF
+python3 update_travel_data.py
+rm update_travel_data.py

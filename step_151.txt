@@ -1,0 +1,1063 @@
+// FADZA TRAVEL Data Architecture
+// Centralized, verified destination data & packages with editable demo content
+
+import { ASSET_IMAGES } from './images';
+
+export const BRAND_INFO = {
+  name: "FADZA TRAVEL",
+  tagline: "Temukan Perjalananmu.",
+  // Internal WhatsApp number used only for link generation (NEVER rendered directly as text in UI)
+  whatsappNumber: "6285888159765",
+  email: "halo@fadzatravel.com",
+  instagram: "@fadzatravel",
+  address: "Seminyak, Bali & Jakarta Selatan (Demo Office)",
+  hours: "Setiap Hari: 08.00 - 22.00 WIB",
+  currency: "IDR"
+};
+
+export const DESTINATIONS = [
+  {
+    id: "bali",
+    name: "Bali",
+    subtitle: "Pulau Dewata & Tebing Nusa Penida",
+    description: "Kombinasi magis pantai berpasir putih, sawah berundak terasering Ubud, tebing Nusa Penida, dan kearifan budaya yang mendalam.",
+    image: ASSET_IMAGES.destinations.bali.primary,
+    fallbackImage: ASSET_IMAGES.destinations.bali.fallback,
+    packageCount: 6,
+    startingPrice: 2850000,
+    tags: ["Pantai", "Budaya", "Romantic", "Healing"],
+    highlightSpots: ["Nusa Penida", "Ubud Tegallalang", "Uluwatu Sunset", "Pantai Melasti"]
+  },
+  {
+    id: "labuan-bajo",
+    name: "Labuan Bajo",
+    subtitle: "Gerbang Komodo & Phinisi",
+    description: "Petualangan bahari kelas dunia melintasi gugusan pulau purba, perjumpaan dengan Komodo Dragon, dan sensasi liveaboard phinisi mewah.",
+    image: ASSET_IMAGES.destinations.labuanBajo.primary,
+    fallbackImage: ASSET_IMAGES.destinations.labuanBajo.fallback,
+    packageCount: 5,
+    startingPrice: 4200000,
+    tags: ["Phinisi", "Adventure", "Snorkeling", "Luxury"],
+    highlightSpots: ["Pulau Padar", "Pink Beach", "Taka Makassar", "Manta Point"]
+  },
+  {
+    id: "raja-ampat",
+    name: "Raja Ampat",
+    subtitle: "Mahakarya Bawah Laut Dunia",
+    description: "Ikon keanekaragaman hayati laut terkaya di planet bumi. Gugusan karst zamrud di atas air laut sebening kaca kristal.",
+    image: ASSET_IMAGES.destinations.rajaAmpat.primary,
+    fallbackImage: ASSET_IMAGES.destinations.rajaAmpat.fallback,
+    packageCount: 4,
+    startingPrice: 8750000,
+    tags: ["Diving", "Eksklusif", "Nature", "Photography"],
+    highlightSpots: ["Piaynemo", "Wayag", "Manta Sandy", "Teluk Kabui"]
+  },
+  {
+    id: "lombok",
+    name: "Lombok",
+    subtitle: "Sensasi Eksotis & Gili Tropis",
+    description: "Ketenangan pantai pasir merica Kuta Lombok, kemegahan bukit savana Merese, dan pesona perairan tenang trio Gili tanpa polusi.",
+    image: ASSET_IMAGES.destinations.lombok.primary,
+    fallbackImage: ASSET_IMAGES.destinations.lombok.fallback,
+    packageCount: 5,
+    startingPrice: 2950000,
+    tags: ["Island Hopping", "Relax", "Surfing", "Nature"],
+    highlightSpots: ["Gili Trawangan", "Bukit Merese", "Pantai Tanjung Aan", "Air Terjun Sendang Gile"]
+  },
+  {
+    id: "yogyakarta",
+    name: "Yogyakarta",
+    subtitle: "Ibu Kota Budaya & Warisan Luhur",
+    description: "Perjalanan spiritual dan budaya menelusuri kemegahan Candi Borobudur, keriuhan Malioboro, gua karst Goa Pindul, hingga kuliner legendaris.",
+    image: ASSET_IMAGES.destinations.yogyakarta.primary,
+    fallbackImage: ASSET_IMAGES.destinations.yogyakarta.fallback,
+    packageCount: 4,
+    startingPrice: 1950000,
+    tags: ["Budaya", "Heritage", "Kuliner", "Family"],
+    highlightSpots: ["Candi Borobudur", "Candi Prambanan", "Taman Sari", "Goa Jomblang"]
+  },
+  {
+    id: "bromo",
+    name: "Bromo & Malang",
+    subtitle: "Negeri di Atas Awan",
+    description: "Sensasi sunrise magis berlatar kepulan kawah Bromo dan Gunung Semeru, menembus lautan pasir dengan Jeep 4x4, serta hawa sejuk pegunungan.",
+    image: ASSET_IMAGES.destinations.bromo.primary,
+    fallbackImage: ASSET_IMAGES.destinations.bromo.fallback,
+    packageCount: 4,
+    startingPrice: 1850000,
+    tags: ["Adventure", "Sunrise", "Photography", "Jeep"],
+    highlightSpots: ["Penanjakan Sunrise", "Kawah Bromo", "Pasir Berbisik", "Bukit Teletubbies"]
+  }
+];
+
+export const PACKAGES = [
+  {
+    id: "bali-escape",
+    slug: "bali-escape-4d3n",
+    name: "Bali Escape & Nusa Penida",
+    tagline: "Kombinasi Sempurna Budaya Ubud & Spektakuler Tebing Nusa Penida",
+    destination: "Bali",
+    destinationId: "bali",
+    duration: "4 Hari 3 Malam",
+    durationDays: 4,
+    durationNights: 3,
+    durationCategory: "medium",
+    travelStyle: "Relax",
+    travelStyleLabel: "Santai & Healing",
+    badge: "Best Seller",
+    featured: true,
+    price: 3450000,
+    formattedPrice: "Rp 3.450.000",
+    rating: 4.9,
+    reviewCount: 148,
+    isSampleRating: true,
+    heroImage: ASSET_IMAGES.packages.baliEscape.hero,
+    fallbackImage: ASSET_IMAGES.destinations.bali.fallback,
+    gallery: ASSET_IMAGES.packages.baliEscape.gallery,
+    shortDescription: "Nikmati kedamaian pedesaan Ubud, sunset tepi tebing Uluwatu, dan petualangan menyeberang ke formasi tebing ikonik Kelingking Beach.",
+    overview: "Paket Bali Escape 4D3N dirancang khusus untuk Anda yang mendambakan liburan seimbang: relaksasi di resor bernuansa asri, sentuhan budaya Bali yang sakral, serta momen foto memukau di Nusa Penida. Seluruh transportasi menggunakan armada privat ber-AC dengan pendamping lokal ramah.",
+    highlights: [
+      "Eksplorasi West Nusa Penida: Kelingking Beach, Broken Beach, & Angel's Billabong",
+      "Sunset magis di Pura Luhur Uluwatu dengan tiket VIP Tari Kecak Fire Dance",
+      "Makan malam romantis tepi pantai di Seafood Jimbaran dengan deburan ombak",
+      "Santai di Ubud: Tegalalang Rice Terrace, Sacred Monkey Forest, & Pasar Seni",
+      "Akomodasi hotel bintang 4 pilihan di Seminyak / Ubud dengan sarapan lezat"
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Penjemputan Bandara & Sunset Romantis Uluwatu",
+        location: "Kuta & Uluwatu",
+        meals: "Makan Malam (Jimbaran Seafood)",
+        accommodation: "Hotel Pilihan Seminyak",
+        activities: [
+          { time: "12:00 - 14:00", activity: "Penjemputan di Bandara I Gusti Ngurah Rai dengan sambutan hangat khas Bali" },
+          { time: "14:30 - 15:30", activity: "Check-in hotel di kawasan Seminyak, rehat sejenak dan menyegarkan diri" },
+          { time: "16:00 - 18:30", activity: "Menuju Pura Uluwatu di atas tebing samudra megah, menyaksikan Tari Kecak saat senja" },
+          { time: "19:30 - 21:00", activity: "Santap malam Candlelight Seafood Dinner di tepi Pantai Jimbaran" }
+        ]
+      },
+      {
+        day: 2,
+        title: "Island Hopping Nusa Penida West Coast",
+        location: "Nusa Penida Island",
+        meals: "Sarapan Hotel, Makan Siang Lokal, Makan Malam",
+        accommodation: "Hotel Pilihan Seminyak",
+        activities: [
+          { time: "06:30 - 07:30", activity: "Sarapan pagi di hotel dan transfer ke Pelabuhan Sanur" },
+          { time: "08:00 - 08:45", activity: "Menyeberang ke Nusa Penida dengan Speedboat Cepat" },
+          { time: "09:30 - 12:30", activity: "Eksplorasi Kelingking Beach T-Rex Cliff dan Angel's Billabong" },
+          { time: "12:30 - 13:30", activity: "Makan siang di resto lokal Nusa Penida dengan kelapa muda segar" },
+          { time: "14:00 - 16:00", activity: "Mengunjungi Broken Beach (Pasih Uug) dan berfoto di Crystal Bay" },
+          { time: "16:30 - 17:30", activity: "Kembali ke Sanur dan transfer kembali ke hotel" }
+        ]
+      },
+      {
+        day: 3,
+        title: "Kesejukan Ubud Terasering & Cafe Estetik",
+        location: "Ubud & Kintamani",
+        meals: "Sarapan Hotel, Makan Siang View Gunung, Makan Malam",
+        accommodation: "Hotel Pilihan Seminyak",
+        activities: [
+          { time: "08:30 - 10:00", activity: "Perjalanan menuju Ubud, mengunjungi Tegalalang Rice Terrace" },
+          { time: "10:30 - 12:30", activity: "Jalan santai di Sacred Monkey Forest Sanctuary yang rimbun" },
+          { time: "13:00 - 14:30", activity: "Makan siang di Kintamani dengan panorama Gunung & Danau Batur" },
+          { time: "15:30 - 17:30", activity: "Berbelanja kerajinan otentik di Ubud Art Market" }
+        ]
+      },
+      {
+        day: 4,
+        title: "Oleh-Oleh Khas Bali & Transfer Bandara",
+        location: "Kuta / Bandara Ngurah Rai",
+        meals: "Sarapan Hotel",
+        accommodation: "-",
+        activities: [
+          { time: "08:00 - 10:00", activity: "Sarapan pagi dan proses check-out santai" },
+          { time: "10:30 - 12:30", activity: "Belanja cenderamata dan pie susu khas Bali" },
+          { time: "13:00", activity: "Pengantaran menuju Bandara Ngurah Rai untuk penerbangan pulang" }
+        ]
+      }
+    ],
+    included: [
+      "Akomodasi 3 malam di Hotel Pilihan (1 kamar berdua / twin bed)",
+      "Transportasi privat ber-AC selama tour",
+      "Tiket speedboat pulang-pergi Sanur - Nusa Penida",
+      "Transport privat khusus dan driver lokal di Nusa Penida",
+      "Tiket masuk seluruh objek wisata sesuai program",
+      "Tiket pertunjukan Tari Kecak Uluwatu",
+      "Sarapan Hotel harian, Makan Siang & Makan Malam sesuai program",
+      "Air mineral dingin gratis setiap hari selama tour"
+    ],
+    notIncluded: [
+      "Tiket pesawat PP menuju Denpasar Bali",
+      "Pengeluaran belanja pribadi dan tipping sukarela",
+      "Aktivitas wahana opsional seperti ayunan ekstrem (swing)"
+    ],
+    facilities: [
+      { name: "Hotel Pilihan", icon: "Hotel" },
+      { name: "Mobil Privat AC", icon: "Car" },
+      { name: "Speedboat Cepat", icon: "Ship" },
+      { name: "Makan Lengkap", icon: "Utensils" }
+    ],
+    notes: [
+      "Meeting point: Bandara Internasional I Gusti Ngurah Rai (DPS).",
+      "Paket bersifat privat dan dapat disesuaikan dengan jadwal penerbangan Anda.",
+      "Disarankan membawa kacamata hitam, pakaian pantai, dan tabir surya."
+    ]
+  },
+  {
+    id: "labuan-bajo-phinisi",
+    slug: "labuan-bajo-phinisi-3d2n",
+    name: "Labuan Bajo Phinisi Discovery",
+    tagline: "Liveaboard Phinisi Semi-Mewah Menjelajahi Surga Purba Komodo",
+    destination: "Labuan Bajo",
+    destinationId: "labuan-bajo",
+    duration: "3 Hari 2 Malam",
+    durationDays: 3,
+    durationNights: 2,
+    durationCategory: "short",
+    travelStyle: "Adventure",
+    travelStyleLabel: "Petualangan & Bahari",
+    badge: "Sensasi Unik",
+    featured: true,
+    price: 4650000,
+    formattedPrice: "Rp 4.650.000",
+    rating: 5.0,
+    reviewCount: 92,
+    isSampleRating: true,
+    heroImage: ASSET_IMAGES.packages.labuanBajoPhinisi.hero,
+    fallbackImage: ASSET_IMAGES.destinations.labuanBajo.fallback,
+    gallery: ASSET_IMAGES.packages.labuanBajoPhinisi.gallery,
+    shortDescription: "Tidur di atas kapal phinisi tradisional semi-luxury, menyaksikan ribuan kelelawar di Pulau Kalong, dan trekking matahari terbit Pulau Padar.",
+    overview: "Rasakan kebebasan sejati berlayar melintasi perairan biru toska Taman Nasional Komodo. Nikmati fasilitas kabin AC di atas kapal Phinisi berstandar tinggi, didampingi koki kapal yang menyajikan santapan hangat, serta pemandangan langit malam tanpa polusi.",
+    highlights: [
+      "Trekking sunrise spektakuler di puncak bukit Pulau Padar berlatar 3 teluk",
+      "Berenang dan snorkeling santai di Pink Beach dengan pasir merah muda unik",
+      "Berenang bersama pari raksasa di habitat alaminya di Manta Point",
+      "Menyaksikan jutaan kelelawar terbang saat senja merah di Pulau Kalong",
+      "Dokumentasi foto momen terbaik selama pelayaran"
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Check-in Kapal Phinisi & Senja Magis Pulau Kalong",
+        location: "Pelabuhan Marina - Pulau Kelor - Kalong",
+        meals: "Makan Siang & Makan Malam di Kapal",
+        accommodation: "Kabin Kapal Phinisi AC",
+        activities: [
+          { time: "09:30 - 10:30", activity: "Penjemputan di hotel/Bandara Komodo (LBJ) menuju Marina Labuan Bajo" },
+          { time: "11:00 - 12:30", activity: "Welcome drink, briefing keselamatan, dan berlayar menuju Pulau Kelor" },
+          { time: "13:00 - 15:00", activity: "Trekking bukit Kelor untuk panorama 360 derajat & santap siang di kapal" },
+          { time: "17:30 - 19:00", activity: "Menikmati golden sunset di Pulau Kalong diiringi tarian ribuan kalong terbang" }
+        ]
+      },
+      {
+        day: 2,
+        title: "Ikon Padar, Komodo Dragon & Pink Beach",
+        location: "Pulau Padar - Komodo - Pink Beach - Manta Point",
+        meals: "Sarapan, Makan Siang & Makan Malam di Kapal",
+        accommodation: "Kabin Kapal Phinisi AC",
+        activities: [
+          { time: "05:00 - 07:30", activity: "Trekking pagi di Pulau Padar untuk menyaksikan sunrise spektakuler" },
+          { time: "08:00 - 09:30", activity: "Sarapan hangat di sundeck kapal sembari berlayar ke Pulau Komodo" },
+          { time: "10:00 - 12:00", activity: "Trekking di Pulau Komodo didampingi ranger resmi" },
+          { time: "12:30 - 15:00", activity: "Bersantai di hamparan pasir merah muda Pink Beach & snorkeling Manta Point" }
+        ]
+      },
+      {
+        day: 3,
+        title: "Pulau Kanawa, Sayonara & Kepulangan",
+        location: "Pulau Kanawa - Marina Labuan Bajo",
+        meals: "Sarapan & Makan Siang di Kapal",
+        accommodation: "-",
+        activities: [
+          { time: "07:00 - 08:30", activity: "Sarapan di kapal dan berlayar ke Pulau Kanawa" },
+          { time: "09:00 - 11:00", activity: "Snorkeling santai di dermaga Kanawa dengan ribuan ikan warna-warni" },
+          { time: "13:30", activity: "Drop-off menuju Bandara Komodo atau hotel di Labuan Bajo" }
+        ]
+      }
+    ],
+    included: [
+      "Liveaboard 3H2M di Kapal Phinisi Semi-Luxury (Kabin ber-AC)",
+      "Antar jemput bandara / hotel Labuan Bajo PP",
+      "Makan lengkap 3x sehari selama di kapal",
+      "Snack sore, buah segar, kopi, teh, dan air mineral",
+      "Peralatan snorkeling lengkap (mask, snorkel, fin) & Life Jacket pelampung",
+      "Dokumentasi foto selama trip",
+      "Pemandu lokal ramah dan ranger resmi Taman Nasional"
+    ],
+    notIncluded: [
+      "Tiket pesawat PP ke Labuan Bajo (LBJ)",
+      "Tiket masuk Taman Nasional Komodo & retribusi Pemda (dibayar di lokasi)",
+      "Tipping kru kapal & keperluan pribadi"
+    ],
+    facilities: [
+      { name: "Phinisi Boat", icon: "Ship" },
+      { name: "Kabin AC Nyaman", icon: "Home" },
+      { name: "Full Board Meals", icon: "Utensils" },
+      { name: "Snorkel Gear", icon: "Waves" }
+    ],
+    notes: [
+      "Penerbangan kedatangan disarankan tiba sebelum pukul 09.30 WITA.",
+      "Penerbangan kepulangan disarankan setelah pukul 14.30 WITA.",
+      "Disarankan membawa sepatu trekking nyaman untuk mendaki bukit Pulau Padar."
+    ]
+  },
+  {
+    id: "raja-ampat-ultimate",
+    slug: "raja-ampat-ultimate-5d4n",
+    name: "Raja Ampat Ultimate Paradise",
+    tagline: "Eksplorasi Mahakarya Karst Piaynemo & Teluk Kabui yang Magis",
+    destination: "Raja Ampat",
+    destinationId: "raja-ampat",
+    duration: "5 Hari 4 Malam",
+    durationDays: 5,
+    durationNights: 4,
+    durationCategory: "medium",
+    travelStyle: "Romantic",
+    travelStyleLabel: "Eksklusif & Fotografi",
+    badge: "Eksklusif",
+    featured: true,
+    price: 8950000,
+    formattedPrice: "Rp 8.950.000",
+    rating: 5.0,
+    reviewCount: 64,
+    isSampleRating: true,
+    heroImage: ASSET_IMAGES.packages.rajaAmpatUltimate.hero,
+    fallbackImage: ASSET_IMAGES.destinations.rajaAmpat.fallback,
+    gallery: ASSET_IMAGES.packages.rajaAmpatUltimate.gallery,
+    shortDescription: "Saksikan langsung keajaiban gugusan pulau karang Piaynemo, Pasir Timbul, Teluk Kabui, dan menyelam bersama biota laut terkaya di dunia.",
+    overview: "Sebuah perjalanan sekali seumur hidup menuju surga paling murni di timur nusantara. Menginap di resort terapung di atas laut jernih Waisai, menjelajahi laguna tersembunyi, hingga berinteraksi hangat dengan masyarakat lokal desa wisata Arborek.",
+    highlights: [
+      "Mendaki tangga kayu menuju puncak Piaynemo dengan panorama karst ikonik",
+      "Menyusuri labirin karst dan bebatuan mistis di Teluk Kabui & Batu Pensil",
+      "Snorkeling bersama puluhan ikan pelagis di dermaga Desa Wisata Arborek",
+      "Menginjakkan kaki di Pasir Timbul di tengah lautan luas",
+      "Akomodasi resort tepi laut dengan pemandangan bintang malam tanpa polusi"
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Penjemputan Sorong & Ferry Cepat ke Waisai",
+        location: "Sorong - Waisai Raja Ampat",
+        meals: "Makan Siang & Makan Malam",
+        accommodation: "Resort Tepi Laut Waisai",
+        activities: [
+          { time: "07:30 - 08:30", activity: "Penjemputan di Bandara DEO Sorong" },
+          { time: "09:00 - 11:30", activity: "Menyeberang ke Pelabuhan Waisai dengan Express Ferry" },
+          { time: "12:00 - 14:00", activity: "Tiba di Waisai, check-in resort, dan istirahat sejenak" }
+        ]
+      },
+      {
+        day: 2,
+        title: "Ikonik Piaynemo, Teluk Bintang & Arborek",
+        location: "Piaynemo & Arborek",
+        meals: "Sarapan, Makan Siang Box di Pulau, Makan Malam",
+        accommodation: "Resort Tepi Laut Waisai",
+        activities: [
+          { time: "07:00 - 09:00", activity: "Speedboat menuju Piaynemo melintasi selat hijau zamrud" },
+          { time: "09:30 - 11:30", activity: "Mendaki ke puncak Piaynemo & Teluk Bintang" },
+          { time: "14:00 - 16:30", activity: "Snorkeling di Dermaga Arborek yang dipenuhi gerombolan ikan warna-warni" }
+        ]
+      },
+      {
+        day: 3,
+        title: "Teluk Kabui, Batu Pensil & Pasir Timbul",
+        location: "Kabui Bay & Mansuar",
+        meals: "Sarapan, Makan Siang, Makan Malam",
+        accommodation: "Resort Tepi Laut Waisai",
+        activities: [
+          { time: "08:00 - 11:00", activity: "Menyusuri perairan tenang Teluk Kabui melihat Batu Pensil" },
+          { time: "11:30 - 13:00", activity: "Mampir ke Pasir Timbul berfoto di atas pulau pasir putih" }
+        ]
+      },
+      {
+        day: 4,
+        title: "Relaksasi Pantai Friwen & Kayak Laut",
+        location: "Pantai Friwen",
+        meals: "Sarapan, Makan Siang, Makan Malam",
+        accommodation: "Resort Tepi Laut Waisai",
+        activities: [
+          { time: "09:00 - 12:00", activity: "Berenang di Pantai Friwen dengan pasir halus putih bak bedak" },
+          { time: "14:00 - 17:00", activity: "Waktu santai menikmati matahari terbenam dari sundeck resort" }
+        ]
+      },
+      {
+        day: 5,
+        title: "Kembali ke Sorong & Transfer Bandara",
+        location: "Waisai - Sorong",
+        meals: "Sarapan Resort",
+        accommodation: "-",
+        activities: [
+          { time: "07:00 - 08:30", activity: "Sarapan pagi dan proses check-out" },
+          { time: "09:00 - 11:00", activity: "Ferry cepat kembali ke Kota Sorong" },
+          { time: "13:30", activity: "Pengantaran ke Bandara DEO Sorong" }
+        ]
+      }
+    ],
+    included: [
+      "Akomodasi 4 malam di Resort Tepi Laut Raja Ampat",
+      "Tiket Ferry Cepat Express Sorong - Waisai PP",
+      "Private Speedboat selama tour pulau Raja Ampat",
+      "Makan lengkap 3x sehari selama trip",
+      "Peralatan snorkeling & jaket pelampung keselamatan",
+      "Pemandu lokal ramah dan kapten berpengalaman"
+    ],
+    notIncluded: [
+      "Tiket pesawat udara ke Kota Sorong (SOQ)",
+      "PIN / Kartu Retribusi Tarif Jasa Lingkungan Raja Ampat",
+      "Pengeluaran personal & peralatan scuba diving"
+    ],
+    facilities: [
+      { name: "Resort Tepi Laut", icon: "Hotel" },
+      { name: "Private Speedboat", icon: "Compass" },
+      { name: "Local Guide", icon: "Users" },
+      { name: "Snorkel Gear", icon: "Waves" }
+    ],
+    notes: [
+      "Waktu terbaik berkunjung adalah Oktober hingga April.",
+      "Membawa botol minum isi ulang (tumbler) untuk menjaga kelestarian alam bebas sampah plastik."
+    ]
+  },
+  {
+    id: "lombok-adventure",
+    slug: "lombok-adventure-4d3n",
+    name: "Lombok Tropical Dream & Gili",
+    tagline: "Petualangan Trio Gili, Bukit Merese & Keindahan Alam Sasak",
+    destination: "Lombok",
+    destinationId: "lombok",
+    duration: "4 Hari 3 Malam",
+    durationDays: 4,
+    durationNights: 3,
+    durationCategory: "medium",
+    travelStyle: "Adventure",
+    travelStyleLabel: "Petualangan & Alam",
+    badge: "Favorit",
+    featured: true,
+    price: 3150000,
+    formattedPrice: "Rp 3.150.000",
+    rating: 4.8,
+    reviewCount: 110,
+    isSampleRating: true,
+    heroImage: ASSET_IMAGES.packages.lombokAdventure.hero,
+    fallbackImage: ASSET_IMAGES.destinations.lombok.fallback,
+    gallery: ASSET_IMAGES.packages.lombokAdventure.gallery,
+    shortDescription: "Jelajahi keindahan bawah laut Gili Trawangan, Meno, & Air dengan private boat, lalu nikmati golden hour di Bukit Merese.",
+    overview: "Nikmati kombinasi keindahan pantai selatan Lombok dengan pasir mericanya, kekayaan adat Sasak, hingga ketenangan pulau tanpa kendaraan bermotor di trio Gili.",
+    highlights: [
+      "Snorkeling private boat di 3 Gili: Patung Bawah Laut Meno & Penyu Trawangan",
+      "Matahari terbenam di Bukit Merese berlatar Pantai Tanjung Aan nan magis",
+      "Belajar tenun tradisional di Desa Adat Sade suku Sasak",
+      "Menyantap Ayam Taliwang pedas gurih legendaris Lombok"
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Eksplorasi Sasak Culture & Sunset Mandalika",
+        location: "Kuta Mandalika & Desa Sade",
+        meals: "Makan Siang & Makan Malam",
+        accommodation: "Hotel Pilihan Kuta Lombok",
+        activities: [
+          { time: "09:00 - 10:30", activity: "Penjemputan di Bandara Internasional Lombok (LOP)" },
+          { time: "11:00 - 12:30", activity: "Berkunjung ke Desa Sade belajar tenun ikat Sasak" },
+          { time: "15:30 - 18:30", activity: "Sunset di Bukit Merese berlatar lengkungan pantai biru" }
+        ]
+      },
+      {
+        day: 2,
+        title: "Snorkeling Private Boat Trio Gili",
+        location: "Gili Trawangan, Meno & Air",
+        meals: "Sarapan, Makan Siang di Gili, Makan Malam",
+        accommodation: "Hotel Pilihan Senggigi",
+        activities: [
+          { time: "08:00 - 09:30", activity: "Menyeberang ke Gili dengan boat privat" },
+          { time: "10:00 - 13:00", activity: "Snorkeling melihat patung bawah laut Meno & penyu laut" },
+          { time: "13:00 - 16:00", activity: "Santai keliling Gili Trawangan dengan sepeda santai" }
+        ]
+      },
+      {
+        day: 3,
+        title: "Air Terjun Kaki Rinjani & Kesejukan Senaru",
+        location: "Senaru",
+        meals: "Sarapan, Makan Siang, Makan Malam",
+        accommodation: "Hotel Pilihan Senggigi",
+        activities: [
+          { time: "08:30 - 14:00", activity: "Trekking santai menyusuri Air Terjun Sendang Gile & Tiu Kelep" }
+        ]
+      },
+      {
+        day: 4,
+        title: "Pusat Kerajinan & Sayonara",
+        location: "Mataram - Bandara",
+        meals: "Sarapan Hotel",
+        accommodation: "-",
+        activities: [
+          { time: "08:30 - 11:30", activity: "Belanja mutiara dan madu hutan sebelum diantar ke Bandara" }
+        ]
+      }
+    ],
+    included: [
+      "Akomodasi 3 malam di Hotel Pilihan",
+      "Private boat untuk snorkeling ke 3 Gili + alat snorkeling lengkap",
+      "Transportasi privat ber-AC selama tour",
+      "Semua tiket masuk objek wisata & donasi desa adat",
+      "Makan lengkap sesuai jadwal program"
+    ],
+    notIncluded: [
+      "Tiket pesawat PP ke Lombok",
+      "Sewa sepeda atau cidomo (delman) di Gili Trawangan",
+      "Pengeluaran belanja pribadi"
+    ],
+    facilities: [
+      { name: "Hotel Pilihan", icon: "Hotel" },
+      { name: "Private Car AC", icon: "Car" },
+      { name: "Private Boat Gili", icon: "Ship" }
+    ],
+    notes: [
+      "Cocok untuk liburan keluarga maupun pasangan.",
+      "Gili Trawangan bebas kendaraan bermotor."
+    ]
+  },
+  {
+    id: "yogyakarta-heritage",
+    slug: "yogyakarta-heritage-3d2n",
+    name: "Yogyakarta Heritage & Cave Tubing",
+    tagline: "Pesona Luhur Candi Borobudur, Petualangan Gua Pindul & Kuliner Khas",
+    destination: "Yogyakarta",
+    destinationId: "yogyakarta",
+    duration: "3 Hari 2 Malam",
+    durationDays: 3,
+    durationNights: 2,
+    durationCategory: "short",
+    travelStyle: "Family",
+    travelStyleLabel: "Budaya & Keluarga",
+    badge: "Ramah Keluarga",
+    featured: true,
+    price: 2150000,
+    formattedPrice: "Rp 2.150.000",
+    rating: 4.9,
+    reviewCount: 135,
+    isSampleRating: true,
+    heroImage: ASSET_IMAGES.packages.yogyakartaHeritage.hero,
+    fallbackImage: ASSET_IMAGES.destinations.yogyakarta.fallback,
+    gallery: ASSET_IMAGES.packages.yogyakartaHeritage.gallery,
+    shortDescription: "Jelajahi kemegahan relief Candi Borobudur, serunya susur sungai bawah tanah Goa Pindul, dan malam syahdu Malioboro.",
+    overview: "Paket wisata Yogyakarta yang memadukan edukasi sejarah berkelas, petualangan alam yang aman untuk seluruh keluarga, dan kehangatan kuliner tradisional khas Jogja.",
+    highlights: [
+      "Kunjungan Candi Borobudur naik ke atas struktur monumen candi",
+      "Petualangan cave tubing menyusuri sungai bawah tanah di Goa Pindul",
+      "Lava Tour Merapi menaiki Jeep 4x4 berlatar puncak Gunung Merapi",
+      "Berburu kuliner legendaris dan suasana syahdu Malioboro"
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Kedatangan, Keraton Jogja & Romantisme Malioboro",
+        location: "Pusat Kota Yogyakarta",
+        meals: "Makan Siang & Makan Malam",
+        accommodation: "Hotel Pilihan Malioboro",
+        activities: [
+          { time: "09:00 - 10:30", activity: "Penjemputan di Bandara YIA / Stasiun Tugu" },
+          { time: "11:00 - 13:00", activity: "Mengunjungi Keraton Yogyakarta dan Taman Sari" },
+          { time: "17:30 - 21:00", activity: "Jalan santai di pedestrian Malioboro dan makan malam wedangan" }
+        ]
+      },
+      {
+        day: 2,
+        title: "Kemegahan Candi Borobudur & Lava Tour Merapi",
+        location: "Magelang & Kaliurang",
+        meals: "Sarapan, Makan Siang Khas, Makan Malam",
+        accommodation: "Hotel Pilihan Malioboro",
+        activities: [
+          { time: "08:00 - 11:30", activity: "Eksplorasi kemegahan stupa Candi Borobudur" },
+          { time: "14:00 - 17:00", activity: "Lava Tour Merapi naik Jeep 4x4 melintasi trek bebatuan" }
+        ]
+      },
+      {
+        day: 3,
+        title: "Cave Tubing Goa Pindul & Belanja Bakpia",
+        location: "Gunungkidul - Pusat Kota",
+        meals: "Sarapan, Makan Siang",
+        accommodation: "-",
+        activities: [
+          { time: "08:00 - 11:30", activity: "Cave tubing seru di Goa Pindul melihat stalaktit kristal" },
+          { time: "14:00 - 16:00", activity: "Belanja Bakpia khas sebelum diantar ke Stasiun / Bandara" }
+        ]
+      }
+    ],
+    included: [
+      "Akomodasi 2 malam di Hotel Pilihan dekat pusat kota",
+      "Mobil privat AC + pendamping perjalanan",
+      "Tiket naik ke monumen Candi Borobudur (termasuk sandal khusus)",
+      "Tiket Jeep Lava Tour Merapi",
+      "Paket Cave Tubing Goa Pindul + perlengkapan keselamatan pelampung",
+      "Semua tiket masuk destinasi dan retribusi parkir",
+      "Makan sesuai itinerary program"
+    ],
+    notIncluded: [
+      "Tiket kereta / pesawat menuju Yogyakarta",
+      "Pengeluaran belanja pribadi dan oleh-oleh"
+    ],
+    facilities: [
+      { name: "Hotel Pilihan", icon: "Hotel" },
+      { name: "Mobil Privat AC", icon: "Car" },
+      { name: "Jeep 4x4", icon: "Compass" }
+    ],
+    notes: [
+      "Membawa pakaian ganti untuk aktivitas basah di Goa Pindul."
+    ]
+  },
+  {
+    id: "bromo-sunrise",
+    slug: "bromo-sunrise-ijen-3d2n",
+    name: "Bromo Sunrise & Ijen Blue Fire",
+    tagline: "Sensasi Dua Fenomena Vulkanik Paling Ikonik di Jawa Timur",
+    destination: "Bromo & Malang",
+    destinationId: "bromo",
+    duration: "3 Hari 2 Malam",
+    durationDays: 3,
+    durationNights: 2,
+    durationCategory: "short",
+    travelStyle: "Adventure",
+    travelStyleLabel: "Petualangan & Sunrise",
+    badge: "Petualang",
+    featured: true,
+    price: 2650000,
+    formattedPrice: "Rp 2.650.000",
+    rating: 4.9,
+    reviewCount: 88,
+    isSampleRating: true,
+    heroImage: ASSET_IMAGES.packages.bromoSunrise.hero,
+    fallbackImage: ASSET_IMAGES.destinations.bromo.fallback,
+    gallery: ASSET_IMAGES.packages.bromoSunrise.gallery,
+    shortDescription: "Taklukkan sunrise Penanjakan Bromo dengan Jeep 4x4, lalu saksikan fenomena api biru langka dunia di kawah belerang Gunung Ijen.",
+    overview: "Dirancang bagi pencinta keindahan lanskap alam dramatis. Perjalanan ini menyajikan dua atraksi vulkanik spektakuler: lautan pasir dan kepulan asap Bromo yang agung, serta kawah belerang toska Ijen dengan fenomena Blue Fire magis.",
+    highlights: [
+      "Golden sunrise di titik tertinggi Penanjakan 1 Bromo berlatar Batok dan Semeru",
+      "Menunggangi Jeep 4x4 melintasi Lautan Pasir Berbisik dan Bukit Teletubbies",
+      "Mendaki kawah aktif Bromo dan mendengar gemuruh alam dari dekat",
+      "Hike malam ke Kawah Ijen untuk menyaksikan fenomena api biru (Blue Fire)",
+      "Didampingi local guide dengan masker gas standar"
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Penjemputan Surabaya/Malang & Menuju Kawasan Bromo",
+        location: "Surabaya / Malang - Bromo",
+        meals: "Makan Siang & Makan Malam",
+        accommodation: "Lodge Pegunungan Bromo",
+        activities: [
+          { time: "09:00 - 11:00", activity: "Penjemputan di Bandara / Stasiun Surabaya atau Malang" },
+          { time: "11:30 - 15:00", activity: "Perjalanan ke area Bromo Tengger, check-in hotel, menikmati hawa sejuk" }
+        ]
+      },
+      {
+        day: 2,
+        title: "Bromo Sunrise Jeep Tour & Perjalanan ke Banyuwangi",
+        location: "Bromo - Banyuwangi",
+        meals: "Sarapan Hotel, Makan Siang, Makan Malam",
+        accommodation: "Hotel Pilihan Banyuwangi",
+        activities: [
+          { time: "03:00 - 06:30", activity: "Berangkat Jeep 4x4 menuju Penanjakan 1 menikmati sunrise spektakuler" },
+          { time: "06:30 - 09:00", activity: "Eksplorasi Lautan Pasir, tangga kawah Bromo, & Bukit Teletubbies" },
+          { time: "12:00 - 17:00", activity: "Perjalanan menuju Banyuwangi (kaki Gunung Ijen)" }
+        ]
+      },
+      {
+        day: 3,
+        title: "Hike Blue Fire Ijen & Kepulangan",
+        location: "Kawah Ijen - Banyuwangi / Surabaya",
+        meals: "Sarapan Box, Makan Siang",
+        accommodation: "-",
+        activities: [
+          { time: "01:00 - 04:30", activity: "Pendakian kawah Ijen bersama guide dan melihat api biru magis" },
+          { time: "05:30 - 07:00", activity: "Menikmati sunrise dan danau kawah asam berwarna toska" },
+          { time: "12:00", activity: "Pengantaran ke Bandara / Stasiun. Tour selesai." }
+        ]
+      }
+    ],
+    included: [
+      "Akomodasi 1 malam di Bromo & 1 malam di Banyuwangi",
+      "Mobil privat AC Surabaya/Malang - Bromo - Banyuwangi",
+      "Sewa Jeep 4x4 resmi di Bromo",
+      "Tiket masuk Taman Nasional Bromo & Kawah Ijen",
+      "Masker gas respirator untuk pendakian Kawah Ijen",
+      "Local guide ramah di Bromo dan Kawah Ijen",
+      "Makan lengkap sesuai program"
+    ],
+    notIncluded: [
+      "Tiket pesawat / kereta api menuju Jawa Timur",
+      "Pengeluaran personal & belanja oleh-oleh"
+    ],
+    facilities: [
+      { name: "Jeep 4x4", icon: "Compass" },
+      { name: "Hotel Pegunungan", icon: "Hotel" },
+      { name: "Masker Gas Ijen", icon: "Shield" },
+      { name: "Private Transport", icon: "Car" }
+    ],
+    notes: [
+      "Suhu di Bromo dan Ijen dapat mencapai 5 - 12 derajat Celcius. Wajib membawa jaket tebal dan sepatu yang nyaman."
+    ]
+  },
+  {
+    id: "bali-ubud-romance",
+    slug: "bali-ubud-romance-3d2n",
+    name: "Bali Hidden Ubud & Waterfall Escape",
+    tagline: "Kedamaian Resor Asri, Lembah Hijau & Air Terjun Tersembunyi",
+    destination: "Bali",
+    destinationId: "bali",
+    duration: "3 Hari 2 Malam",
+    durationDays: 3,
+    durationNights: 2,
+    durationCategory: "short",
+    travelStyle: "Romantic",
+    travelStyleLabel: "Romantis & Healing",
+    badge: "Honeymoon",
+    featured: false,
+    price: 2950000,
+    formattedPrice: "Rp 2.950.000",
+    rating: 4.9,
+    reviewCount: 76,
+    isSampleRating: true,
+    heroImage: ASSET_IMAGES.packages.baliUbudRomance.hero,
+    fallbackImage: ASSET_IMAGES.destinations.bali.fallback,
+    gallery: ASSET_IMAGES.packages.baliUbudRomance.gallery,
+    shortDescription: "Rasakan ketenangan sejati Ubud di resort bernuansa alam, mengunjungi air terjun Kanto Lampo saat sepi, dan santai di cafe tepi lembah.",
+    overview: "Pilihan sempurna bagi pasangan yang menginginkan liburan tenang tanpa keramaian kota. Menikmati spa tradisional Bali, jalan santai di Campuhan Ridge Walk, dan santap malam istimewa dengan panorama lembah hijau.",
+    highlights: [
+      "Menginap di villa bernuansa hutan tropis asri Ubud",
+      "Kunjungan pagi hari ke Air Terjun Kanto Lampo & Tibumana",
+      "Romantic Candlelight Dinner dengan menu khas nusantara",
+      "Floating breakfast santai di kolam renang villa"
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Tiba di Bali & Menuju Kesejukan Ubud",
+        location: "Ubud",
+        meals: "Makan Malam Romantis",
+        accommodation: "Villa Pilihan Ubud",
+        activities: [
+          { time: "12:00 - 14:00", activity: "Penjemputan bandara dan transfer langsung ke resort di Ubud" },
+          { time: "15:00 - 18:00", activity: "Waktu luang menikmati fasilitas resort dan spa relaksasi" }
+        ]
+      },
+      {
+        day: 2,
+        title: "Lembah Campuhan & Air Terjun Alami",
+        location: "Campuhan & Kanto Lampo",
+        meals: "Sarapan Villa, Makan Siang Lembah, Makan Malam",
+        accommodation: "Villa Pilihan Ubud",
+        activities: [
+          { time: "06:30 - 08:30", activity: "Jalan pagi di Campuhan Ridge Walk menghirup udara segar" },
+          { time: "09:30 - 12:30", activity: "Bermain air di air terjun tersembunyi berair jernih" }
+        ]
+      },
+      {
+        day: 3,
+        title: "Pasar Seni & Pengantaran Bandara",
+        location: "Ubud - Bandara",
+        meals: "Sarapan Villa",
+        accommodation: "-",
+        activities: [
+          { time: "08:30 - 11:30", activity: "Mampir ke sentra seni lukis dan pahat sebelum diantar ke Bandara" }
+        ]
+      }
+    ],
+    included: [
+      "Akomodasi 2 malam di Villa bernuansa alam Ubud",
+      "Transportasi privat ber-AC",
+      "1x Romantic Candlelight Dinner",
+      "Sarapan harian dan makan sesuai jadwal"
+    ],
+    notIncluded: [
+      "Tiket pesawat menuju Bali",
+      "Pengeluaran personal"
+    ],
+    facilities: [
+      { name: "Villa Alam", icon: "Hotel" },
+      { name: "Mobil AC", icon: "Car" },
+      { name: "Romantic Dinner", icon: "Utensils" }
+    ],
+    notes: [
+      "Cocok untuk honeymoon dan perayaan hari istimewa."
+    ]
+  },
+  {
+    id: "ijen-blue-fire",
+    slug: "ijen-blue-fire-2d1n",
+    name: "Kawah Ijen Midnight Blue Fire",
+    tagline: "Ekspedisi Api Biru & Danau Asam Terbesar Dunia",
+    destination: "Bromo & Malang",
+    destinationId: "bromo",
+    duration: "2 Hari 1 Malam",
+    durationDays: 2,
+    durationNights: 1,
+    durationCategory: "short",
+    travelStyle: "Adventure",
+    travelStyleLabel: "Petualangan",
+    badge: "Fenomena Langka",
+    featured: false,
+    price: 1850000,
+    formattedPrice: "Rp 1.850.000",
+    rating: 4.8,
+    reviewCount: 52,
+    isSampleRating: true,
+    heroImage: ASSET_IMAGES.packages.ijenBlueFire.hero,
+    fallbackImage: ASSET_IMAGES.destinations.bromo.fallback,
+    gallery: ASSET_IMAGES.packages.ijenBlueFire.gallery,
+    shortDescription: "Pendakian tengah malam menyaksikan kobaran api biru belerang alami dan panorama danau toska Kawah Ijen saat fajar.",
+    overview: "Paket singkat penuh pengalaman berharga menaklukkan lereng Gunung Ijen di perbatasan Banyuwangi dan Bondowoso.",
+    highlights: [
+      "Menyaksikan api biru (Blue Fire) yang hanya ada 2 di dunia",
+      "Melihat aktivitas tradisional penambang belerang",
+      "Panorama danau kawah asam berwarna toska spektakuler"
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Penjemputan Banyuwangi & Rehat Sebelum Mendaki",
+        location: "Banyuwangi",
+        meals: "Makan Malam",
+        accommodation: "Hotel Pilihan Banyuwangi",
+        activities: [
+          { time: "14:00 - 17:00", activity: "Penjemputan di Stasiun / Bandara Banyuwangi dan check-in hotel" }
+        ]
+      },
+      {
+        day: 2,
+        title: "Midnight Hike Blue Fire & Kepulangan",
+        location: "Kawah Ijen",
+        meals: "Sarapan Box",
+        accommodation: "-",
+        activities: [
+          { time: "00:30 - 04:30", activity: "Menuju Paltuding dan mulai pendakian kawah Ijen" },
+          { time: "05:00 - 07:00", activity: "Menikmati sunrise di bibir kawah danau toska" },
+          { time: "11:00", activity: "Kembali ke Banyuwangi untuk transfer kepulangan" }
+        ]
+      }
+    ],
+    included: [
+      "Akomodasi 1 malam di Banyuwangi",
+      "Transportasi privat ber-AC",
+      "Masker gas respirator khusus",
+      "Tiket masuk Taman Wisata Alam Kawah Ijen",
+      "Pemandu pendakian berpengalaman"
+    ],
+    notIncluded: [
+      "Tiket pesawat / kereta api",
+      "Tipping sukarela"
+    ],
+    facilities: [
+      { name: "Hotel Pilihan", icon: "Hotel" },
+      { name: "Masker Gas", icon: "Shield" },
+      { name: "Pemandu", icon: "UserCheck" }
+    ],
+    notes: [
+      "Membawa jaket hangat, sarung tangan, dan senter kepala."
+    ]
+  }
+];
+
+export const WHY_FADZA = [
+  {
+    id: "pricing",
+    title: "Harga Transparan & Pasti",
+    description: "Semua rincian biaya, tiket masuk, akomodasi, dan transportasi dijelaskan secara terbuka tanpa ada biaya tersembunyi saat di lokasi."
+  },
+  {
+    id: "curated",
+    title: "Itinerary Kurasi Ahli",
+    description: "Rute perjalanan dirancang dengan ritme yang menyenangkan, tidak terburu-buru, dan menyisipkan spot autentik pilihan."
+  },
+  {
+    id: "support",
+    title: "Pendampingan Personal 24/7",
+    description: "Konsultan travel kami siap menjawab pertanyaan dan memantau kelancaran perjalanan Anda sejak persiapan hingga tiba kembali di rumah."
+  },
+  {
+    id: "booking",
+    title: "Kemudahan Booking via WhatsApp",
+    description: "Konsultasi gratis, kustomisasi tanggal dan rombongan langsung dengan respons cepat melalui percakapan santai di WhatsApp resmi kami."
+  }
+];
+
+export const GENERAL_FAQS = [
+  {
+    q: "Bagaimana cara booking paket wisata di FADZA TRAVEL?",
+    a: "Cukup klik tombol 'Chat WhatsApp' di paket yang Anda inginkan. Pesan WhatsApp akan otomatis memuat nama paket dan rencana rombongan Anda, lalu tim konsultan kami akan membantu konfirmasi ketersediaan dan detail perjalanan."
+  },
+  {
+    q: "Apa saja yang sudah termasuk dalam paket wisata?",
+    a: "Secara umum paket kami sudah mencakup: akomodasi hotel/kabin phinisi pilihan, transportasi privat ber-AC selama tour, pemandu lokal, tiket masuk objek wisata utama, sarapan dan makan sesuai program, serta air mineral. Rincian persis tercantum di halaman masing-masing paket."
+  },
+  {
+    q: "Apakah harga sudah termasuk tiket pesawat atau kereta?",
+    a: "Harga paket belum termasuk tiket transportasi antarkota (pesawat/kereta) agar Anda memiliki kebebasan menentukan jam terbang dan maskapai favorit. Tim kami dapat membantu pemesanan tiket penerbangan jika Anda menginginkannya dalam satu kesatuan paket."
+  },
+  {
+    q: "Apakah jadwal itinerary bisa disesuaikan (custom trip)?",
+    a: "Bisa! Seluruh paket FADZA TRAVEL dapat disesuaikan dengan kebutuhan Anda, baik penambahan hari, pergantian destinasi, maupun upgrade jenis kamar hotel atau villa."
+  },
+  {
+    q: "Bagaimana cara pembayaran paket wisata?",
+    a: "Pembayaran dilakukan secara aman melalui transfer bank dengan sistem DP (Down Payment) untuk mengamankan kamar dan transportasi, sedangkan pelunasan dapat diselesaikan mendekati tanggal keberangkatan."
+  },
+  {
+    q: "Bagaimana cara menghubungi tim FADZA TRAVEL?",
+    a: "Anda dapat menghubungi kami kapan saja melalui tombol WhatsApp resmi yang tersedia di seluruh halaman website. Tim kami siap merespons setiap hari pukul 08.00 - 22.00 WIB."
+  }
+];
+
+export const TESTIMONIALS = [
+  {
+    id: 1,
+    name: "Dimas Wicaksono & Pasangan",
+    trip: "Bali Escape & Nusa Penida 4D3N",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+    rating: 5,
+    text: "Awalnya bingung mau liburan ke mana. Tim FADZA menjelaskan setiap detail paket dengan sangat transparan di WhatsApp. Driver sopan, foto-foto Nusa Penida memuaskan, dan ritme jalan-jalannya santai tidak terburu-buru.",
+    badge: "Simulasi / Sampel Ulasan Pengguna"
+  },
+  {
+    id: 2,
+    name: "Hendra Pratama & Rekan",
+    trip: "Labuan Bajo Phinisi Discovery 3D2N",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+    rating: 5,
+    text: "Pengalaman liveaboard phinisi pertama kali dan sangat berkesan! Makanan di kapal hangat dan lezat, momen trekking Pulau Padar waktu sunrise luar biasa indah.",
+    badge: "Simulasi / Sampel Ulasan Pengguna"
+  },
+  {
+    id: 3,
+    name: "Keluarga Ibu Ratna",
+    trip: "Yogyakarta Heritage & Cave Tubing 3D2N",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
+    rating: 5,
+    text: "Liburan bareng anak-anak dan orang tua tertata rapi. Mobilnya bersih wangi, tiket candi Borobudur sudah siap tanpa antre lama, dan pilihan restorannya sangat ramah keluarga.",
+    badge: "Simulasi / Sampel Ulasan Pengguna"
+  }
+];
+
+export const GALLERY_ITEMS = [
+  {
+    id: 1,
+    title: "Tebing Kelingking T-Rex",
+    destination: "Bali",
+    destinationId: "bali",
+    category: "Lanskap",
+    image: ASSET_IMAGES.destinations.bali.primary,
+    fallback: ASSET_IMAGES.destinations.bali.fallback,
+    caption: "Formasi tebing karang ikonik Nusa Penida yang menjulang kokoh di atas lautan biru toska."
+  },
+  {
+    id: 2,
+    title: "Pesona Tiga Teluk Pulau Padar",
+    destination: "Labuan Bajo",
+    destinationId: "labuan-bajo",
+    category: "Lanskap",
+    image: ASSET_IMAGES.destinations.labuanBajo.primary,
+    fallback: ASSET_IMAGES.destinations.labuanBajo.fallback,
+    caption: "Puncak bukit Pulau Padar yang menampakkan tiga lengkungan pantai dengan gradasi pasir memukau."
+  },
+  {
+    id: 3,
+    title: "Gugusan Karst Zamrud Piaynemo",
+    destination: "Raja Ampat",
+    destinationId: "raja-ampat",
+    category: "Lanskap",
+    image: ASSET_IMAGES.destinations.rajaAmpat.primary,
+    fallback: ASSET_IMAGES.destinations.rajaAmpat.fallback,
+    caption: "Kepingan surga bawah laut dunia yang memikat setiap pasang mata penjelajah bumi."
+  },
+  {
+    id: 4,
+    title: "Lanskap Hijau Bukit Merese",
+    destination: "Lombok",
+    destinationId: "lombok",
+    category: "Pantai & Bukit",
+    image: ASSET_IMAGES.destinations.lombok.primary,
+    fallback: ASSET_IMAGES.destinations.lombok.fallback,
+    caption: "Perbukitan hijau menghadap ombak Samudra Hindia dengan pemandangan golden sunset."
+  },
+  {
+    id: 5,
+    title: "Stupa Luhur Candi Borobudur",
+    destination: "Yogyakarta",
+    destinationId: "yogyakarta",
+    category: "Budaya & Warisan",
+    image: ASSET_IMAGES.destinations.yogyakarta.primary,
+    fallback: ASSET_IMAGES.destinations.yogyakarta.fallback,
+    caption: "Warisan luhur nenek moyang bangsa yang menyimpan ribuan cerita filosofi kebajikan hidup."
+  },
+  {
+    id: 6,
+    title: "Sunrise Emas Kaldera Bromo",
+    destination: "Bromo & Malang",
+    destinationId: "bromo",
+    category: "Lanskap Vulkanik",
+    image: ASSET_IMAGES.destinations.bromo.primary,
+    fallback: ASSET_IMAGES.destinations.bromo.fallback,
+    caption: "Gradasi fajar menyinari kawah Bromo dan Gunung Semeru yang gagah berselimut kabut lembut."
+  }
+];
+
+export const STORIES = [
+  {
+    id: "panduan-labuan-bajo",
+    title: "Panduan Lengkap Jelajah Labuan Bajo untuk Pemula",
+    category: "Panduan Wisata",
+    date: "15 Maret 2026",
+    readTime: "5 menit baca",
+    image: ASSET_IMAGES.destinations.labuanBajo.primary,
+    excerpt: "Semua hal yang perlu Anda persiapkan: mulai dari pilihan liveaboard phinisi vs hotel darat, tips trekking Pulau Padar, hingga etika melihat Komodo Dragon secara aman.",
+    content: `Labuan Bajo di Nusa Tenggara Timur telah bertransformasi menjadi salah satu destinasi bahari paling menawan di dunia. Bagi Anda yang baru pertama kali merencanakan kunjungan ke sini, ada beberapa tips penting yang perlu Anda ketahui:
+
+1. Liveaboard Phinisi: Pengalaman Wajib
+Menginap di atas kapal Phinisi semi-mewah (liveaboard) adalah cara terbaik menikmati Taman Nasional Komodo. Anda akan bangun tepat saat matahari terbit di depan tebing Pulau Padar dan tidur diiringi ribuan bintang di teluk yang tenang.
+
+2. Waktu Terbaik Berkunjung
+Bulan April hingga November adalah musim kering terbaik dengan perairan tenang dan langit biru cerah. Jika Anda ingin melihat padang savana hijau segar, datanglah di bulan April-Mei; sedangkan jika menyukai nuansa savana cokelat eksotis ala Jurassic Park, bulan Juli-Oktober adalah pilihan tepat.
+
+3. Perlengkapan yang Wajib Dibawa
+Gunakan sepatu trekking bertapak karet untuk mendaki tangga Pulau Padar, baju renang berlengan panjang untuk snorkeling menghindari sengatan ubur-ubur kecil, serta tabir surya yang ramah terumbu karang (reef-safe sunscreen).`
+  },
+  {
+    id: "hidden-gems-ubud",
+    title: "7 Hidden Gems di Ubud yang Tenang & Menyegarkan Jiwa",
+    category: "Inspirasi Liburan",
+    date: "02 Maret 2026",
+    readTime: "4 menit baca",
+    image: ASSET_IMAGES.destinations.bali.primary,
+    excerpt: "Melipir sejenak dari keramaian pusat Ubud menuju lembah tersembunyi, air terjun alami bertingkat, dan cafe di tengah kebun organik yang menyejukkan hati.",
+    content: `Ubud selalu memiliki ruang khusus bagi mereka yang mencari ketenangan batin. Jika Anda merasa pusat kota Ubud mulai padat, cobalah melangkah sedikit lebih jauh ke arah utara dan timur:
+
+1. Air Terjun Kanto Lampo saat Pagi
+Datanglah sebelum pukul 08.00 pagi. Anda akan merasakan kedamaian gemercik air yang jatuh di atas bebatuan bertingkat hitam legam tanpa antrean foto.
+
+2. Jalan Setapak Campuhan Ridge Walk
+Berjalan santai saat fajar menyingsing di atas bukit berundak dengan ilalang hijau segar. Udara sejuk dan kabut tipis lembah Sungai Wos akan mengisi kembali energi positif Anda.
+
+3. Kuliner Organik Petik Sendiri
+Kunjungi kebun-kebun lokal di kawasan Tegallalang yang menyajikan teh herbal daun kelor hangat dan salad sayur organik segar yang dipetik langsung dari kebun.`
+  },
+  {
+    id: "tips-packing-trip-kepulauan",
+    title: "Tips Packing Cerdas untuk Trip Kepulauan & Bahari",
+    category: "Tips Perjalanan",
+    date: "20 Februari 2026",
+    readTime: "4 menit baca",
+    image: ASSET_IMAGES.destinations.rajaAmpat.primary,
+    excerpt: "Jangan biarkan koper berat membatasi mobilitas Anda saat island hopping. Simak daftar barang penting yang wajib masuk tas perjalanan Anda.",
+    content: `Melakukan perjalanan antar pulau di Raja Ampat, Komodo, maupun trio Gili memerlukan strategi packing yang sedikit berbeda dari liburan perkotaan biasa:
+
+1. Gunakan Duffle Bag atau Tas Ransel Waterproof
+Hindari membawa koper beroda kaku (hardcase) berukuran terlalu besar karena ruang penyimpanan di kabin kapal atau speedboat terbatas. Tas dry-bag tahan air 20-30L sangat berguna melindungi kamera dan gadget Anda dari cipratan ombak.
+
+2. Pakaian Cepat Kering (Quick-Dry)
+Pilihlah pakaian berbahan linen atau poliester ringan yang cepat kering saat terkena air laut atau keringat. Bawa minimal dua set baju renang agar bisa dipakai bergantian tanpa menunggu terlalu lama.
+
+3. Sandal Gunung Bertali
+Sandal gunung bertali jauh lebih aman dan tidak licin saat menaiki tangga dermaga atau bebatuan karang basah dibandingkan sandal jepit biasa.`
+  }
+];
