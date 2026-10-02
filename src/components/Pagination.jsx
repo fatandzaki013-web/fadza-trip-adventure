@@ -68,15 +68,9 @@ export default function Pagination({
             padding: '0.5rem 1rem',
             minHeight: '38px',
             borderRadius: '9999px',
-            backgroundColor: isYellowTheme
-              ? (isFirst ? 'rgba(223, 255, 0, 0.35)' : '#DFFF00')
-              : (isFirst ? 'rgba(255, 255, 255, 0.08)' : '#1E293B'),
-            border: isYellowTheme
-              ? (isFirst ? '1.5px solid rgba(223, 255, 0, 0.4)' : '1.5px solid #DFFF00')
-              : (isFirst ? '1.5px solid rgba(255, 255, 255, 0.12)' : '1.5px solid #38BDF8'),
-            color: isYellowTheme
-              ? (isFirst ? 'rgba(15, 23, 42, 0.55)' : '#0F172A')
-              : (isFirst ? 'rgba(255, 255, 255, 0.4)' : '#FFFFFF'),
+            backgroundColor: "#10B981",
+            border: "1.5px solid #10B981",
+            color: "#FFFFFF",
             fontSize: '0.85rem',
             fontWeight: '900',
             letterSpacing: '0.02em',
@@ -91,7 +85,7 @@ export default function Pagination({
           <ChevronLeft
             size={16}
             className="prev-arrow-icon"
-            color={isYellowTheme ? '#0F172A' : (isFirst ? 'rgba(255, 255, 255, 0.4)' : '#38BDF8')}
+            color="#FFFFFF"
             style={{ transition: 'transform 0.25s ease' }}
           />
           <span className="pagination-text">Sebelumnya</span>
@@ -126,61 +120,9 @@ export default function Pagination({
                   height: '38px',
                   borderRadius: '9999px',
                   // In Yellow Theme: Inactives are YELLOW (#DFFF00), Active is DIBEDAKAN (Dark Navy with Yellow Glowing Text!)
-                  backgroundColor: isYellowTheme
-                    ? (isActive ? '#0F172A' : '#DFFF00')
-                    : (isActive ? '#DFFF00' : '#FFFFFF'),
-                  border: isYellowTheme
-                    ? (isActive ? '2.5px solid #DFFF00' : '1.5px solid #DFFF00')
-                    : (isActive ? '2px solid #DFFF00' : '1.5px solid rgba(255, 255, 255, 0.4)'),
-                  color: isYellowTheme
-                    ? (isActive ? '#DFFF00' : '#0F172A')
-                    : '#0F172A',
-                  fontWeight: '900',
-                  fontSize: '0.92rem',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  transition: 'all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                  boxShadow: isActive
-                    ? '0 0 0 3px rgba(223, 255, 0, 0.4), 0 4px 14px rgba(0, 0, 0, 0.5)'
-                    : '0 2px 6px rgba(0, 0, 0, 0.15)',
-                  transform: isActive ? 'scale(1.08)' : 'scale(1)',
-                  flexShrink: 0
-                }}
-              >
-                {p}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* =========================================================================
-            3. BAGIAN "BERIKUTNYA"
-            Yellow Theme: All Yellow (#DFFF00) with Dark Navy text
-            ========================================================================= */}
-        <button
-          type="button"
-          onClick={() => !isLast && onPageChange(currentPage + 1)}
-          disabled={isLast}
-          aria-label="Halaman Selanjutnya"
-          className={`pagination-motion-btn pagination-next-btn ${isLast ? 'disabled' : ''}`}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.35rem',
-            padding: '0.5rem 1rem',
-            minHeight: '38px',
-            borderRadius: '9999px',
-            backgroundColor: isYellowTheme
-              ? (isLast ? 'rgba(223, 255, 0, 0.35)' : '#DFFF00')
-              : (isLast ? 'rgba(255, 255, 255, 0.08)' : '#10B981'),
-            border: isYellowTheme
-              ? (isLast ? '1.5px solid rgba(223, 255, 0, 0.4)' : '1.5px solid #DFFF00')
-              : (isLast ? '1.5px solid rgba(255, 255, 255, 0.12)' : '1.5px solid #34D399'),
-            color: isYellowTheme
-              ? (isLast ? 'rgba(15, 23, 42, 0.55)' : '#0F172A')
-              : (isLast ? 'rgba(255, 255, 255, 0.4)' : '#FFFFFF'),
+                  backgroundColor: "#10B981",
+            border: "1.5px solid #10B981",
+            color: "#FFFFFF",
             fontSize: '0.85rem',
             fontWeight: '900',
             letterSpacing: '0.02em',
@@ -196,7 +138,7 @@ export default function Pagination({
           <ChevronRight
             size={16}
             className="next-arrow-icon"
-            color={isYellowTheme ? '#0F172A' : (isLast ? 'rgba(255, 255, 255, 0.4)' : '#FFFFFF')}
+            color="#FFFFFF"
             style={{ transition: 'transform 0.25s ease' }}
           />
         </button>
